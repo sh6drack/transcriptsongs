@@ -8,7 +8,7 @@ from song_identifier import SongIdentifier
 load_dotenv()
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 500 * 1024 * 1024  # 500MB max file size
+app.config['MAX_CONTENT_LENGTH'] = 1000 * 1024 * 1024  # 1GB max file size
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 # Allowed audio extensions
