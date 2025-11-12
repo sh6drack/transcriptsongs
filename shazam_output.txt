@@ -1,0 +1,11 @@
+
+🎵 ShazamIO DJ Set Analyzer
+📁 File: 01 Underground-October-15.wav
+⏱️  Interval: 90s
+
+============================================================
+
+🎵 Analyzing 58 minutes of audio with Shazam...
+Checking every 90 seconds
+
+⏱️  00:00 / 58:04... 

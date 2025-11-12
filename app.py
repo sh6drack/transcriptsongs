@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
-from song_identifier import SongIdentifier
+from shazam_simple import SimpleShazam
 
 # Load environment variables
 load_dotenv()
@@ -45,17 +45,12 @@ def upload_file():
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(filepath)
 
-    # Get API key
-    api_key = os.getenv('AUDD_API_KEY')
-    if not api_key:
-        return jsonify({'error': 'API key not configured. Please add AUDD_API_KEY to .env file'}), 500
-
-    # Get sampling interval (default 30 seconds)
-    interval = int(request.form.get('interval', 30))
+    # Get sampling interval (default 45 seconds for Shazam)
+    interval = int(request.form.get('interval', 45))
 
     try:
-        # Analyze the DJ set
-        identifier = SongIdentifier(api_key)
+        # Analyze with Shazam
+        identifier = SimpleShazam()
         songs = identifier.analyze_dj_set(filepath, interval=interval)
 
         # Format output
@@ -83,12 +78,6 @@ def health():
 
 
 if __name__ == '__main__':
-    # Check if API key is set
-    if not os.getenv('AUDD_API_KEY'):
-        print("\n⚠️  WARNING: AUDD_API_KEY not found in .env file")
-        print("Please add your API key to use the song identification feature")
-        print("Get a free API key at: https://audd.io/\n")
-
-    print("Starting TranscriptSongs server...")
+    print("🎵 TranscriptSongs (Powered by Shazam)")
     print("Open http://localhost:5001 in your browser\n")
     app.run(debug=True, host='0.0.0.0', port=5001)

@@ -1,32 +1,34 @@
 # transcriptsongs
 
-shazam but for dj sets. upload your mix and get timestamps.
+shazam for dj sets. auto-generates timestamped tracklists.
 
 ## setup
 
 ```bash
-./setup.sh
+pyenv install 3.12.8
+/Users/shadrack/.pyenv/versions/3.12.8/bin/python3 -m venv venv
+source venv/bin/activate
+pip install shazamio requests flask python-dotenv
 ```
-
-get api key from https://audd.io/ (free)
-
-add it to `.env`
 
 ## run
 
+web:
 ```bash
 source venv/bin/activate
 python3 app.py
 ```
+http://localhost:5001
 
-open http://localhost:5001
+cli:
+```bash
+python3 test_shazam.py your_mix.mp3 90
+```
 
 ## output
 
 ```
-TIMESTAMPS:
-
-0:00 - 1:35 - Big Sean ft Ty Dolla $ign, Chris Brown - Play no games
-1:36 - 2:50 - Cardi B - Principal
-2:51 - 4:21 - Beyonce - Party
+0:00 - 1:35 - Brent Faiyaz - Rehab (Winter in Paris)
+1:36 - 2:50 - Cash Cobain & BunnaB - Hoes Be Mad
+2:51 - 4:21 - Summer Walker - Deep
 ```
